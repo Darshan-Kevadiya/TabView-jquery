@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+    .input{
+      display: flex;
+      justify-content: space-around;
+      margin: 25px 0;
+    }
+    input{
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body class="w-75 mt-5 mx-auto">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+      <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+      <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false">About</button>
+    </div>
+  </nav>
+  <center>
+  <div class="tab-content border p-5" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, at?</p>
+      <div><button id="btn1" class="btn-sel">Remove Tab</button></div>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, at?</p>
+      <div><button id="btn2" class="btn-sel">Remove Tab</button></div>
+    </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, at?</p>
+      <div><button id="btn3" class="btn-sel">Remove Tab</button></div>
+    </div>
+    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-abour-tab">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, at?</p>
+      <div><button id="btn4" class="btn-sel">Remove Tab</button></div>
+    </div>
+  </div>
+</center>
+
+  <div class="input">
+    <h2 style="width: auto;">Add a New Tab</h2>
+    <div>
+    <input type="text" id="formtb1" placeholder="Title">
+    <input type="text" id="formtb2" placeholder="Content">
+    <button id="formbtn">Add Tab</button>
+  </div>
+  </div>
+
+  <script src="js_bootstrap/bootstrap.bundle.js"></script>
+  <script src="js_jquery/jquery-3.6.0.js"></script>
+  <script>
+$(document).ready(function(){
+// let temp =$("#nav-tab").children()
+// console.log(temp.length);
+// let temp1 =$("#nav-tabContent").children()
+// console.log(temp1.length);
+
+
+$('body').on('click',".btn-sel", function(){
+
+let temp =$("#nav-tab").children()
+console.log(temp.length);
+let tempoo = temp.length-2 ;
+console.log(tempoo);
+
+let abc1 = $(this).parent().parent().index()
+$(this).parent().parent().remove()
+let abc2 = $("#nav-tab").children().eq(abc1).removeClass("active").remove()
+
+let abcd =abc1 
+console.log(abcd);
+$("#nav-tab").children().eq(abcd).addClass("active")
+$("#nav-tabContent").children().eq(abcd).addClass("active show")
+// $("#nav-tabContent").children
+// console.log($("#nav-tab").children().eq(abc1 + 1 ));
+
+if( abcd > tempoo)
+{
+  $("#nav-tab").children().eq(0).addClass("active")
+$("#nav-tabContent").children().eq(0).addClass("active show")
+console.log("dadasd");
+}
+
+});
+
+
+
+$("#formbtn").click(function(){
+let tabname= $("#formtb1").val();
+let tabcontent =$("#formtb2").val();
+
+if(tabname && tabcontent !=""){
+$("#nav-tab").append
+('<button class="nav-link" id="nav-'+name+'-tab" data-bs-toggle="tab" data-bs-target="#nav-'+tabname+'" type="button" role="tab" aria-controls="nav-'+tabname+'" aria-selected="false"> '+ tabname +'</button>')
+
+$("#nav-tabContent").append
+(' <div class="tab-pane fade" id="nav-'+tabname+'" role="tabpanel" aria-labelledby="nav-'+name+'-tab"><p>'+tabcontent +'</p><div><button id="btn'+tabname+'" class="btn-sel">Remove Tab</button></div></div>')
+$("#formtb1").val("");
+$("#formtb2").val("");
+}
+});
+
+
+});
+  </script>
+</body>
+</html>
